@@ -1,8 +1,8 @@
 ---
-description: Le dernier thème dont vous aurez besoin. Peut-être
-featured_image: /images/gohugo-default-sample-hero-image.jpg
-title: 'Ananke: Un thème pour Hugo'
+Beschreibung: Willkommen auf meiner Website! Bitte sehen Sie sich einige der Dinge an, an denen ich während meines Studiums an der London Business School gearbeitet habe
+featured_image: {{< figure src="/images/image.jpeg" title="Data Analytics for Finance" >}}
+Titel: Claudio's Data Analytics Portfolio
 ---
-Bienvenu sur mon blog!
 
-Vous pouvez lire mes idées de publication plus bas.
+Nachfolgend finden Sie einen Auszug aus meiner Arbeit, die ich während des Kurses Data Analytics for Finance an der LBS angefertigt habe
+
