@@ -15,7 +15,7 @@ languages:
     weight: 1
   de:
     contentDir: content/de
-    title: Mein Data Analytcs Portfolio
+    title: Mein Data Analytics Portfolio
     weight: 2
 sitemap:
   changefreq: monthly
