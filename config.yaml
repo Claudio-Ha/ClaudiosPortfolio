@@ -1,5 +1,5 @@
-title: Notre-Dame de Paris
-baseURL: https://example.com
+title: Claudio's Portfolio Website
+baseURL: https://claudiosportfolio.netlify.app
 languageCode: en-us
 theme: gohugo-theme-ananke
 resourceDir: ../resources
@@ -11,11 +11,11 @@ enableRobotsTXT: yes
 languages:
   en:
     contentDir: content/en
-    title: My blog
+    title: My portfolio 
     weight: 1
-  fr:
+  de:
     contentDir: content/fr
-    title: Mon blogue
+    title: Mein portfolio
     weight: 2
 sitemap:
   changefreq: monthly
@@ -27,16 +27,16 @@ params:
   description: The last theme you'll ever need. Maybe.
   facebook: ''
   favicon: ''
-  featured_image: /images/gohugo-default-sample-hero-image.jpg
+  featured_image: /Users/jack/Desktop/London Business School/Classes/CA09/XXXX/Background.jpeg
   github: ''
-  gitlab: ''
-  instagram: ''
-  linkedin: ''
-  mastodon: ''
-  recent_posts_number: 2
-  rss: ''
-  site_logo: ''
-  slack: ''
-  stackoverflow: ''
-  twitter: https://twitter.com/GoHugoIO
-  youtube: ''
+#  gitlab: ''
+  # instagram: ''
+ # linkedin: ''
+#  mastodon: ''
+  # recent_posts_number: 2
+ # rss: ''
+#  site_logo: ''
+ # slack: ''
+#  stackoverflow: ''
+ # twitter: 
+ # youtube: ''
