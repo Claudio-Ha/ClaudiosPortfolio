@@ -1,5 +1,5 @@
 ---
-description: We'd love to hear from you
+description: Please feel free to reach out
 featured_image: images/notebook.jpg
 menu: main
 omit_header_text: true
