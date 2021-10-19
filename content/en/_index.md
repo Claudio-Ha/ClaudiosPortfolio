@@ -1,6 +1,6 @@
 ---
-description: This website was created to showcase an excerpt of my work done during my Data Analytics course at the London Busienss School
+description: The last theme you'll ever need. Maybe.
 featured_image: /images/gohugo-default-sample-hero-image.jpg
-title: 'Claudio's Website'
+title: 'Ananke: a Hugo Theme'
 ---
-You can find an excerpt of my project work, which was created during my Data Analytics course at London Business School, below
+Welcome to my blog with some of my work in progress. I've been working on this book idea. You can read some of the chapters below.
