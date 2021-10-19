@@ -1,8 +1,8 @@
 ---
-description: Le dernier thème dont vous aurez besoin. Peut-être
+description: Diese Website wurde erstellt, um einen Ausschnitt meiner Arbeit, die während meines Data Analytics Kurses an der London Busienss School entstanden ist, darzustellen
 featured_image: /images/gohugo-default-sample-hero-image.jpg
-title: 'Ananke: Un thème pour Hugo'
+title: 'Claudio's Website'
 ---
-Bienvenu sur mon blog!
+Willkommen auf meiner Website!
 
-Vous pouvez lire mes idées de publication plus bas.
+Sie können einen Ausschnitt meiner Projektarbeit, die im Zuge meines Data Analytics Kurses an der London Business School entstanden ist, untenstehend finden
