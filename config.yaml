@@ -27,8 +27,8 @@ params:
   description: This website was created to showcase an excerpt of my work done during my Data Analytics course at the London Busienss School
   facebook: ''
   favicon: ''
-  featured_image: /images/gohugo-default-sample-hero-image.jpg
-  github: ''
+  featured_image: /image.jpeg
+  github: https://github.com/Claudio-Ha
   gitlab: ''
   instagram: ''
   linkedin: ''
@@ -38,5 +38,5 @@ params:
   site_logo: ''
   slack: ''
   stackoverflow: ''
-  twitter: https://twitter.com/GoHugoIO
+  twitter: 
   youtube: ''
