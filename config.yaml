@@ -3,23 +3,22 @@ baseURL: https://claudiosportfolio.netlify.app
 languageCode: en-us
 theme: gohugo-theme-ananke
 resourceDir: ../resources
-DefaultContentLanguage: en
 SectionPagesMenu: main
 Paginate: 3
 googleAnalytics: ''
 enableRobotsTXT: yes
 sitemap:
   changefreq: monthly
-  filename: sitemap.xml
+  filenamea: sitemap.xml
   priority: 0.5
 params:
   author: Claudio
   background_color_class: bg-black
   description: This website showcases some of my work I completed as part of my Data Analytics Class at London Business School
-  facebook: ''
-  favicon: ''
-  featured_image: /Users/jack/Desktop/London Business School/Classes/CA09/XXXX/Background.jpeg
-  github: ''
+ # facebook: ''
+ # favicon: ''
+ # featured_image: /Users/jack/Desktop/London Business School/Classes/CA09/XXXX/Background.jpeg
+ # github: ''
 #  gitlab: ''
   # instagram: ''
  # linkedin: ''
