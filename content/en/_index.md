@@ -1,8 +1,7 @@
 ---
-Beschreibung: Willkommen auf meiner Website! Bitte sehen Sie sich einige der Dinge an, an denen ich während meines Studiums an der London Business School gearbeitet habe
-featured_image: {{< figure src="/images/image.jpeg" title="Data Analytics for Finance" >}}
-Titel: Claudio's Data Analytics Portfolio
+description: Welcome to my Website! Please have a look at some of the things I worked on while at London Business School
+featured_image: 
+title: Claudio's Data Analytics Portfolio
 ---
 
-Nachfolgend finden Sie einen Auszug aus meiner Dokumente, die ich während des Kurses Data Analytics for Finance an der LBS angefertigt habe
-
+Below, you may find an excerpt of the work I completed while attending the Data Analytics for Finance course at LBS
