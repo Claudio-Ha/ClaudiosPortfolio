@@ -1,32 +1,42 @@
-title: Claudio's Portfolio Website
-baseURL: https://claudiosportfolio.netlify.app
+title: Notre-Dame de Paris
+baseURL: https://example.com
 languageCode: en-us
 theme: gohugo-theme-ananke
 resourceDir: ../resources
+DefaultContentLanguage: en
 SectionPagesMenu: main
 Paginate: 3
 googleAnalytics: ''
 enableRobotsTXT: yes
+languages:
+  en:
+    contentDir: content/en
+    title: My blog
+    weight: 1
+  fr:
+    contentDir: content/fr
+    title: Mon blogue
+    weight: 2
 sitemap:
   changefreq: monthly
-  filenamea: sitemap.xml
+  filename: sitemap.xml
   priority: 0.5
 params:
-  author: Claudio
+  author: ''
   background_color_class: bg-black
-  description: This website showcases some of my work I completed as part of my Data Analytics Class at London Business School
- # facebook: ''
- # favicon: ''
- # featured_image: /Users/jack/Desktop/London Business School/Classes/CA09/XXXX/Background.jpeg
- # github: ''
-#  gitlab: ''
-  # instagram: ''
- # linkedin: ''
-#  mastodon: ''
-  # recent_posts_number: 2
- # rss: ''
-#  site_logo: ''
- # slack: ''
-#  stackoverflow: ''
- # twitter: 
- # youtube: ''
+  description: The last theme you'll ever need. Maybe.
+  facebook: ''
+  favicon: ''
+  featured_image: /images/gohugo-default-sample-hero-image.jpg
+  github: ''
+  gitlab: ''
+  instagram: ''
+  linkedin: ''
+  mastodon: ''
+  recent_posts_number: 2
+  rss: ''
+  site_logo: ''
+  slack: ''
+  stackoverflow: ''
+  twitter: https://twitter.com/GoHugoIO
+  youtube: ''
