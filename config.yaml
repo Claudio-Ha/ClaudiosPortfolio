@@ -26,7 +26,7 @@ params:
   background_color_class: bg-blue
   description: This website was created to showcase an excerpt of my work done during my Data Analytics course at the London Busienss School
   facebook: ''
-    favicon: ''
+  favicon: ''
   featured_image:  /images/data1.jpg
   github: https://github.com/Claudio-Ha
   gitlab: ''
