@@ -1,82 +1,116 @@
 ---
 date: "2017-04-09T10:58:08-04:00"
-description: The Grand Hall
+description: Do Steven Spielberg's and Tim Burton's movies have the same mean rating?
 featured_image: /images/Pope-Edouard-de-Beaumont-1844.jpg
 tags:
 - scene
-title: 'Chapter I: The Grand Hall'
+title: 'Steven Spielberg and Tim Burton Movie Rating'
 ---
 
-Three hundred and forty-eight years, six months, and nineteen days ago
-to-day, the Parisians awoke to the sound of all the bells in the triple
-circuit of the city, the university, and the town ringing a full peal.
+```{r load-movies-data}
+movies <- read_csv(here::here("data", "movies.csv"))
+glimpse(movies)
+```
 
-The sixth of January, 1482, is not, however, a day of which history has
-preserved the memory. There was nothing notable in the event which thus
-set the bells and the bourgeois of Paris in a ferment from early morning.
-It was neither an assault by the Picards nor the Burgundians, nor a hunt
-led along in procession, nor a revolt of scholars in the town of Laas, nor
-an entry of “our much dread lord, monsieur the king,” nor even a pretty
-hanging of male and female thieves by the courts of Paris. Neither was it
-the arrival, so frequent in the fifteenth century, of some plumed and
-bedizened embassy. It was barely two days since the last cavalcade of that
-nature, that of the Flemish ambassadors charged with concluding the
-marriage between the dauphin and Marguerite of Flanders, had made its
-entry into Paris, to the great annoyance of M. le Cardinal de Bourbon,
-who, for the sake of pleasing the king, had been obliged to assume an
-amiable mien towards this whole rustic rabble of Flemish burgomasters, and
-to regale them at his Hôtel de Bourbon, with a very “pretty morality,
-allegorical satire, and farce,” while a driving rain drenched the
-magnificent tapestries at his door.
+Your R code and analysis should go here. If you want to insert a blank chunk of R code you can just hit `Ctrl/Cmd+Alt+I` 
 
-What put the “whole population of Paris in commotion,” as Jehan de Troyes
-expresses it, on the sixth of January, was the double solemnity, united
-from time immemorial, of the Epiphany and the Feast of Fools.
+```{r}
+# Select Tim Burton and Steven Spielberg and filter for director and rating
+rating_analysis <- movies %>% filter(director == "Steven Spielberg" | director == "Tim Burton") %>% select(director, rating) %>% group_by(director)
 
-On that day, there was to be a bonfire on the Place de Grève, a maypole at
-the Chapelle de Braque, and a mystery at the Palais de Justice. It had
-been cried, to the sound of the trumpet, the preceding evening at all the
-cross roads, by the provost’s men, clad in handsome, short, sleeveless
-coats of violet camelot, with large white crosses upon their breasts.
+# Calculate summary statistics
+summary_stat <- rating_analysis %>%
+  dplyr::summarize(
+    mean_rating = mean(rating),
+    sd_rating = sd(rating),
+    count = n(),
 
-So the crowd of citizens, male and female, having closed their houses and
-shops, thronged from every direction, at early morn, towards some one of
-the three spots designated.
+    #Here calculate standard error SD/sqrt(n)
+    se_rating = sd_rating/ sqrt(count),
+    #Then calculate the t score
+    t_critical = qt(0.95, df=4),
+    #Calculate 95 prct
+    lower = mean_rating - t_critical * se_rating,
+    upper = mean_rating + t_critical * se_rating
+  ) 
+```
 
-Each had made his choice; one, the bonfire; another, the maypole; another,
-the mystery play. It must be stated, in honor of the good sense of the
-loungers of Paris, that the greater part of this crowd directed their
-steps towards the bonfire, which was quite in season, or towards the
-mystery play, which was to be presented in the grand hall of the Palais de
-Justice (the courts of law), which was well roofed and walled; and that
-the curious left the poor, scantily flowered maypole to shiver all alone
-beneath the sky of January, in the cemetery of the Chapel of Braque.
+> Using a degree of freedom of 4 for the t test, the upper limit for Steven Spielberg is slightly higher than in the graph given. 
 
-The populace thronged the avenues of the law courts in particular, because
-they knew that the Flemish ambassadors, who had arrived two days
-previously, intended to be present at the representation of the mystery,
-and at the election of the Pope of the Fools, which was also to take place
-in the grand hall.
+```{r}
 
-It was no easy matter on that day, to force one’s way into that grand
-hall, although it was then reputed to be the largest covered enclosure in
-the world (it is true that Sauval had not yet measured the grand hall of
-the Château of Montargis). The palace place, encumbered with people,
-offered to the curious gazers at the windows the aspect of a sea; into
-which five or six streets, like so many mouths of rivers, discharged every
-moment fresh floods of heads. The waves of this crowd, augmented
-incessantly, dashed against the angles of the houses which projected here
-and there, like so many promontories, into the irregular basin of the
-place. In the centre of the lofty Gothic* façade of the palace, the grand
-staircase, incessantly ascended and descended by a double current, which,
-after parting on the intermediate landing-place, flowed in broad waves
-along its lateral slopes,—the grand staircase, I say, trickled
-incessantly into the place, like a cascade into a lake. The cries, the
-laughter, the trampling of those thousands of feet, produced a great noise
-and a great clamor. From time to time, this noise and clamor redoubled;
-the current which drove the crowd towards the grand staircase flowed
-backwards, became troubled, formed whirlpools. This was produced by the
-buffet of an archer, or the horse of one of the provost’s sergeants, which
-kicked to restore order; an admirable tradition which the provostship has
-bequeathed to the constablery, the constablery to the _maréchaussée_,
-the _maréchaussée_ to our _gendarmeri_ of Paris.
+# Create plot
+summary_stat %>% 
+  
+  # Define aesthetics and reorder so that Steven Spielberh is shown on top
+  ggplot(aes(x=mean_rating, y=reorder(director, mean_rating), xmin=lower,xmax=upper)) +
+  
+  # Add mean
+  geom_point(color=c("orangered1", "turquoise4"), size=4) + 
+  
+  # Add error bars
+  geom_errorbar(aes(xmin=lower,xmax=upper), color=c("orangered1", "turquoise4"), 
+                size=1, width=0.1) +
+  
+  # Add labels to mean value
+  geom_text(aes(label=round(mean_rating, digits=2)), size=5, vjust=-1.5)+
+  
+  # Add labels to error bars
+  geom_text(aes(x = lower[1], y="Steven Spielberg", 
+    label = round(lower[1], digits=2), vjust = -1.5)) +
+  geom_text(aes(x = upper[1], y="Steven Spielberg", 
+    label = round(upper[1], digits=2), vjust = -1.5)) +
+  geom_text(aes(x = lower[2], y="Tim Burton", 
+    label = round(lower[2], digits=2), vjust = -1.5)) +
+  geom_text(aes(x = upper[2], y="Tim Burton", 
+    label = round(upper[2], digits=2), vjust = -1.5)) +
+  
+  # Add confidence interval overlap
+  geom_rect(xmin=7.27, xmax= 7.33, ymin=-Inf, ymax=+Inf, alpha=0.2, fill="grey") +
+  
+  # Define Theme
+  theme_bw()+
+  
+  #Add titles
+  labs(title = "Do Spielberg and Burton have the same mean IMDB ratings?", 
+       subtitle = "95% confidence intervals overlap",
+       x="Mean IMDB Rating", y="Director")+
+  theme(text = element_text(size = 12))
+```
+
+```{r}
+# Hypothesis test - H0: Tim Burton and Steven Spielberg films have the same mean 
+
+# use the infer package to construct a 95% CI for rating
+library(infer)
+set.seed(1234)
+n <-1000
+
+#Generate the samples and calculate variable of interest for Spielberg
+boot_meanrating_Spielberg <- rating_analysis %>%
+  filter(!is.na(rating) | director =="Steven Spielberg" ) %>% 
+  #Specify variable of interest
+  specify(response=rating) %>% 
+  #Generate bootstrap samples
+  generate(reps=n,type="bootstrap") %>% 
+  #Calculate mean of each sample
+  calculate(stat="mean")
+
+#Generate the samples and calculate variable of interest for Burton
+boot_meanrating_Burton <- rating_analysis %>%
+  filter(!is.na(rating) | director =="Tim Burton" ) %>% 
+  #Specify variable of interest
+  specify(response=rating) %>% 
+  #Generate bootstrap samples
+  generate(reps=n,type="bootstrap") %>% 
+  #Calculate mean of each sample
+  calculate(stat="mean")
+
+# Calculation of standard error
+ SE <- sqrt(((sd(boot_meanrating_Burton$stat)^2)/n)+((sd(boot_meanrating_Spielberg$stat)^2)/n))
+ 
+# Calculation of t-score
+ t_stat <- (mean(boot_meanrating_Burton$stat)-mean(boot_meanrating_Spielberg$stat))/SE
+ print(t_stat)
+ 
+```
