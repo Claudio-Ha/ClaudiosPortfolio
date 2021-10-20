@@ -1,9 +1,8 @@
 ---
-date: "2017-04-09T10:58:08-04:00"
+date: "2021-10-06T10:58:08-04:00"
 description: Do Steven Spielberg's and Tim Burton's movies have the same mean rating?
-featured_image: /images/Pope-Edouard-de-Beaumont-1844.jpg
-tags:
-- scene
+featured_image: ""
+tags[]
 title: 'Steven Spielberg and Tim Burton Movie Rating'
 ---
 
