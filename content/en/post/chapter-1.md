@@ -6,12 +6,14 @@ tags: []
 title: 'Steven Spielberg and Tim Burton Movie Rating'
 ---
 
+> I wanted to test whether movies from Steven Spielberg and Tim Burton have the same mean rating. Using data from IMDB, I first filtered Steven Spielberg and Tim Burton from the data set. Then, I proceeded to plot the 95% confidence internal to see whether there is an overlap, which indicates that the hypothesis above should be further explored. Since this was the case, I decided to train sample data sets (1000 data points) using the infer package and then performed a hypothesis test to test whether there is any noticeable difference in rating. After performing a t-test whether there is a difference in the observations of the two data sets, the null hypothesis was rejected since the t-score was higher than 2.
+
+
+
 ```{r load-movies-data}
 movies <- read_csv(here::here("data", "movies.csv"))
 glimpse(movies)
 ```
-
-Your R code and analysis should go here. If you want to insert a blank chunk of R code you can just hit `Ctrl/Cmd+Alt+I` 
 
 ```{r}
 # Select Tim Burton and Steven Spielberg and filter for director and rating
