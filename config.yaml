@@ -23,7 +23,7 @@ sitemap:
   priority: 0.5
 params:
   author: ''
-  background_color_class: bg-black
+  background_color_class: bg-blue
   description: This website was created to showcase an excerpt of my work done during my Data Analytics course at the London Busienss School
   facebook: ''
   favicon: ''
