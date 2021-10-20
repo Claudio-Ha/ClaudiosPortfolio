@@ -1,5 +1,5 @@
 title: My Data Analytics Portfolio
-baseURL: https://example.com
+baseURL: https://https://claudiosportfolio.netlify.app/
 languageCode: en-us
 theme: gohugo-theme-ananke
 resourceDir: ../resources
@@ -22,13 +22,10 @@ sitemap:
   filename: sitemap.xml
   priority: 0.5
 params:
-  author: ''
+  author: Claudio
   background_color_class: bg-blue
   description: This website was created to showcase an excerpt of my work done during my Data Analytics course at the London Busienss School
   facebook: ''
-  favicon: ''
-  featured_image:  /images/data1.jpg
-  github: https://github.com/Claudio-Ha
   gitlab: ''
   instagram: ''
   linkedin: ''
