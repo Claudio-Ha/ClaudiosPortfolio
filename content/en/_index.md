@@ -3,6 +3,6 @@ description: Welcome to my Website! Please have a look at some of the things I w
 
 title: Claudio's Data Analytics Portfolio
 ---
-
+featured_image: {{< figure src="/images/data.jpeg" >}}
 Below, you may find an excerpt of the work I completed while attending the Data Analytics for Finance course at LBS
-{{< figure src="/images/data.jpeg" >}}
+
