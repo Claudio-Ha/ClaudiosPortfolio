@@ -7,7 +7,7 @@ featured_image: ''
 output: md_document
 ---
 
-> xxx
+> Hereby, we use data from the Wilshire 5000 Index and the ICE BofA US Corporate Index value to compare Expected Return / Volatility of two popular investment strategies: The 60/40 Portfolio and the minimum variance portfolio
 
 
 ```{r echo=FALSE, out.width='100%'}
