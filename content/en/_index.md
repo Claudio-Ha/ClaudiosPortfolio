@@ -1,7 +1,8 @@
 ---
 description: Welcome to my Website! Please have a look at some of the things I worked on while at London Business School
-featured_image:   {{< figure src="/images/data.jpg" >}}
+ {{< figure src="/images/data.jpg"}}
 title: Claudio's Data Analytics Portfolio
 ---
 
+ {{< figure src="/images/data.jpg"}}
 Below, you may find an excerpt of the work I completed while attending the Data Analytics for Finance course at LBS
