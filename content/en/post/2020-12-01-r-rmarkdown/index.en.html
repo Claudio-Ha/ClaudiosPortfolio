@@ -1,49 +1,222 @@
----
-title: "Hello R Markdown"
-author: "Frida Gomam"
-date: 2020-12-01T21:13:14-05:00
-categories: ["R"]
-tags: ["R Markdown", "plot", "regression"]
----
 
 
 
-<div id="r-markdown" class="section level1">
-<h1>R Markdown</h1>
-<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
-<p>You can embed an R code chunk like this:</p>
-<pre class="r"><code>summary(cars)
-##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00
-fit &lt;- lm(dist ~ speed, data = cars)
-fit
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tibble  3.1.5     ✓ dplyr   1.0.7
+## ✓ tidyr   1.1.4     ✓ stringr 1.4.0
+## ✓ readr   2.0.2     ✓ forcats 0.5.1</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;mosaic&#39;:
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2</code></pre>
+<pre><code>## 
+## The &#39;mosaic&#39; package masks several functions from core packages in order to add 
+## additional features.  The original behavior of these functions should not be affected by this.</code></pre>
+<pre><code>## 
+## Attaching package: &#39;mosaic&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:Matrix&#39;:
 ## 
-## Call:
-## lm(formula = dist ~ speed, data = cars)
+##     mean</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
 ## 
-## Coefficients:
-## (Intercept)        speed  
-##     -17.579        3.932</code></pre>
-</div>
-<div id="including-plots" class="section level1">
-<h1>Including Plots</h1>
-<p>You can also embed plots. See Figure <a href="#fig:pie">1</a> for example:</p>
-<pre class="r"><code>par(mar = c(0, 1, 0, 1))
-pie(
-  c(280, 60, 20),
-  c(&#39;Sky&#39;, &#39;Sunny side of pyramid&#39;, &#39;Shady side of pyramid&#39;),
-  col = c(&#39;#0292D8&#39;, &#39;#F7EA39&#39;, &#39;#C4B632&#39;),
-  init.angle = -50, border = NA
-)</code></pre>
-<div class="figure"><span style="display:block;" id="fig:pie"></span>
-<img src="{{< blogdown/postref >}}index.en_files/figure-html/pie-1.png" alt="A fancy pie chart." width="672" />
-<p class="caption">
-Figure 1: A fancy pie chart.
-</p>
-</div>
-</div>
+##     count, do, tally</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     cross</code></pre>
+<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     stat</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
+##     quantile, sd, t.test, var</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     max, mean, min, prod, range, sample, sum</code></pre>
+<pre><code>## 
+## Attaching package: &#39;ggthemes&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
+## 
+##     theme_map</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;GGally&#39;:
+##   method from   
+##   +.gg   ggplot2</code></pre>
+<pre><code>## here() starts at /Users/jack/Desktop/London Business School/Classes/CA09/PlsWork</code></pre>
+<pre><code>## 
+## Attaching package: &#39;skimr&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
+## 
+##     n_missing</code></pre>
+<pre><code>## 
+## Attaching package: &#39;janitor&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     chisq.test, fisher.test</code></pre>
+<pre><code>## Loading required package: lubridate</code></pre>
+<pre><code>## 
+## Attaching package: &#39;lubridate&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     date, intersect, setdiff, union</code></pre>
+<pre><code>## Loading required package: PerformanceAnalytics</code></pre>
+<pre><code>## Loading required package: xts</code></pre>
+<pre><code>## Loading required package: zoo</code></pre>
+<pre><code>## 
+## Attaching package: &#39;zoo&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     as.Date, as.Date.numeric</code></pre>
+<pre><code>## 
+## Attaching package: &#39;xts&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     first, last</code></pre>
+<pre><code>## 
+## Attaching package: &#39;PerformanceAnalytics&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:graphics&#39;:
+## 
+##     legend</code></pre>
+<pre><code>## Loading required package: quantmod</code></pre>
+<pre><code>## Loading required package: TTR</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;quantmod&#39;:
+##   method            from
+##   as.zoo.data.frame zoo</code></pre>
+<pre><code>## ══ Need to Learn tidyquant? ════════════════════════════════════════════════════
+## Business Science offers a 1-hour course - Learning Lab #9: Performance Analysis &amp; Portfolio Optimization with tidyquant!
+## &lt;/&gt; Learn more at: https://university.business-science.io/p/learning-labs-pro &lt;/&gt;</code></pre>
+<pre><code>## 
+## Attaching package: &#39;infer&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:mosaic&#39;:
+## 
+##     prop_test, t_test</code></pre>
+<pre><code>## Loading required package: airports</code></pre>
+<pre><code>## Loading required package: cherryblossom</code></pre>
+<pre><code>## Loading required package: usdata</code></pre>
+<pre><code>## 
+## Attaching package: &#39;openintro&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
+## 
+##     dotPlot</code></pre>
+<pre><code>## The following objects are masked from &#39;package:lattice&#39;:
+## 
+##     ethanol, lsegments</code></pre>
+<pre class="r"><code>movies &lt;- read_csv(here::here(&quot;data&quot;, &quot;movies.csv&quot;))</code></pre>
+<pre><code>## Rows: 2961 Columns: 11</code></pre>
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (3): title, genre, director
+## dbl (8): year, duration, gross, budget, cast_facebook_likes, votes, reviews,...</code></pre>
+<pre><code>## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>glimpse(movies)</code></pre>
+<pre><code>## Rows: 2,961
+## Columns: 11
+## $ title               &lt;chr&gt; &quot;Avatar&quot;, &quot;Titanic&quot;, &quot;Jurassic World&quot;, &quot;The Avenge…
+## $ genre               &lt;chr&gt; &quot;Action&quot;, &quot;Drama&quot;, &quot;Action&quot;, &quot;Action&quot;, &quot;Action&quot;, &quot;…
+## $ director            &lt;chr&gt; &quot;James Cameron&quot;, &quot;James Cameron&quot;, &quot;Colin Trevorrow…
+## $ year                &lt;dbl&gt; 2009, 1997, 2015, 2012, 2008, 1999, 1977, 2015, 20…
+## $ duration            &lt;dbl&gt; 178, 194, 124, 173, 152, 136, 125, 141, 164, 93, 1…
+## $ gross               &lt;dbl&gt; 760505847, 658672302, 652177271, 623279547, 533316…
+## $ budget              &lt;dbl&gt; 2.37e+08, 2.00e+08, 1.50e+08, 2.20e+08, 1.85e+08, …
+## $ cast_facebook_likes &lt;dbl&gt; 4834, 45223, 8458, 87697, 57802, 37723, 13485, 920…
+## $ votes               &lt;dbl&gt; 886204, 793059, 418214, 995415, 1676169, 534658, 9…
+## $ reviews             &lt;dbl&gt; 3777, 2843, 1934, 2425, 5312, 3917, 1752, 1752, 35…
+## $ rating              &lt;dbl&gt; 7.9, 7.7, 7.0, 8.1, 9.0, 6.5, 8.7, 7.5, 8.5, 7.2, …</code></pre>
+<p>Your R code and analysis should go here. If you want to insert a blank chunk of R code you can just hit <code>Ctrl/Cmd+Alt+I</code></p>
+<pre class="r"><code># Select Tim Burton and Steven Spielberg and filter for director and rating
+rating_analysis &lt;- movies %&gt;% filter(director == &quot;Steven Spielberg&quot; | director == &quot;Tim Burton&quot;) %&gt;% select(director, rating) %&gt;% group_by(director)
+
+# Calculate summary statistics
+summary_stat &lt;- rating_analysis %&gt;%
+  dplyr::summarize(
+    mean_rating = mean(rating),
+    sd_rating = sd(rating),
+    count = n(),
+
+    #Here calculate standard error SD/sqrt(n)
+    se_rating = sd_rating/ sqrt(count),
+    #Then calculate the t score
+    t_critical = qt(0.95, df=4),
+    #Calculate 95 prct
+    lower = mean_rating - t_critical * se_rating,
+    upper = mean_rating + t_critical * se_rating
+  ) </code></pre>
+<blockquote>
+<p>Using a degree of freedom of 4 for the t test, the upper limit for Steven Spielberg is slightly higher than in the graph given.</p>
+</blockquote>
+<pre class="r"><code># Create plot
+summary_stat %&gt;% 
+  
+  # Define aesthetics and reorder so that Steven Spielberh is shown on top
+  ggplot(aes(x=mean_rating, y=reorder(director, mean_rating), xmin=lower,xmax=upper)) +
+  
+  # Add mean
+  geom_point(color=c(&quot;orangered1&quot;, &quot;turquoise4&quot;), size=4) + 
+  
+  # Add error bars
+  geom_errorbar(aes(xmin=lower,xmax=upper), color=c(&quot;orangered1&quot;, &quot;turquoise4&quot;), 
+                size=1, width=0.1) +
+  
+  # Add labels to mean value
+  geom_text(aes(label=round(mean_rating, digits=2)), size=5, vjust=-1.5)+
+  
+  # Add labels to error bars
+  geom_text(aes(x = lower[1], y=&quot;Steven Spielberg&quot;, 
+    label = round(lower[1], digits=2), vjust = -1.5)) +
+  geom_text(aes(x = upper[1], y=&quot;Steven Spielberg&quot;, 
+    label = round(upper[1], digits=2), vjust = -1.5)) +
+  geom_text(aes(x = lower[2], y=&quot;Tim Burton&quot;, 
+    label = round(lower[2], digits=2), vjust = -1.5)) +
+  geom_text(aes(x = upper[2], y=&quot;Tim Burton&quot;, 
+    label = round(upper[2], digits=2), vjust = -1.5)) +
+  
+  # Add confidence interval overlap
+  geom_rect(xmin=7.27, xmax= 7.33, ymin=-Inf, ymax=+Inf, alpha=0.2, fill=&quot;grey&quot;) +
+  
+  # Define Theme
+  theme_bw()+
+  
+  #Add titles
+  labs(title = &quot;Do Spielberg and Burton have the same mean IMDB ratings?&quot;, 
+       subtitle = &quot;95% confidence intervals overlap&quot;,
+       x=&quot;Mean IMDB Rating&quot;, y=&quot;Director&quot;)+
+  theme(text = element_text(size = 12))</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code># Hypothesis test - H0: Tim Burton and Steven Spielberg films have the same mean 
+
+# use the infer package to construct a 95% CI for rating
+library(infer)
+set.seed(1234)
+n &lt;-1000
+
+#Generate the samples and calculate variable of interest for Spielberg
+boot_meanrating_Spielberg &lt;- rating_analysis %&gt;%
+  filter(!is.na(rating) | director ==&quot;Steven Spielberg&quot; ) %&gt;% 
+  #Specify variable of interest
+  specify(response=rating) %&gt;% 
+  #Generate bootstrap samples
+  generate(reps=n,type=&quot;bootstrap&quot;) %&gt;% 
+  #Calculate mean of each sample
+  calculate(stat=&quot;mean&quot;)
+
+#Generate the samples and calculate variable of interest for Burton
+boot_meanrating_Burton &lt;- rating_analysis %&gt;%
+  filter(!is.na(rating) | director ==&quot;Tim Burton&quot; ) %&gt;% 
+  #Specify variable of interest
+  specify(response=rating) %&gt;% 
+  #Generate bootstrap samples
+  generate(reps=n,type=&quot;bootstrap&quot;) %&gt;% 
+  #Calculate mean of each sample
+  calculate(stat=&quot;mean&quot;)
+
+# Calculation of standard error
+ SE &lt;- sqrt(((sd(boot_meanrating_Burton$stat)^2)/n)+((sd(boot_meanrating_Spielberg$stat)^2)/n))
+ 
+# Calculation of t-score
+ t_stat &lt;- (mean(boot_meanrating_Burton$stat)-mean(boot_meanrating_Spielberg$stat))/SE
+ print(t_stat)</code></pre>
+<pre><code>## [1] 2.044137</code></pre>
