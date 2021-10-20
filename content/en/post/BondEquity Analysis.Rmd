@@ -1,13 +1,13 @@
 ---
 title: "Testing different Equity + Bond Strategies"
-description: Using monthly data from the Wilshire 5000 (Equity) and the ICE BofA US Corporate Index value (Bond) Indices, this analysis tests different portfolio strategies from December 1972 to January 2021
+description:""
 date: '2021-10-20T10:58:08-04:00'
 tags: []
 featured_image: ''
 output: md_document
 ---
 
-> Hereby, we use data from the Wilshire 5000 Index and the ICE BofA US Corporate Index value to compare Expected Return / Volatility of two popular investment strategies: The 60/40 Portfolio and the minimum variance portfolio
+> Hereby, we use data from the Wilshire 5000 Index and the ICE BofA US Corporate Index value from December 1972 to January 2021 to compare Expected Return / Volatility of two popular investment strategies: The 60/40 Portfolio and the minimum variance portfolio
 
 
 
