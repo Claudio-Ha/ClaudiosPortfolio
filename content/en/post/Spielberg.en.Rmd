@@ -13,7 +13,6 @@ output: md_document
 ```{r echo=FALSE, out.width='100%'}
 knitr::include_graphics('/Users/jack/Desktop/London Business School/Classes/CA09/PlsWork/static/images/Movies.jpeg')
 ```
-```
 
 ```{r load-libraries, echo=FALSE, warning=FALSE, message=FALSE, results=FALSE}
 library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages

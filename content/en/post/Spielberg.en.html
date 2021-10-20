@@ -12,7 +12,7 @@ output: md_document
 <blockquote>
 <p>I wanted to test whether movies from Steven Spielberg and Tim Burton have the same mean rating. Using data from IMDB, I first filtered Steven Spielberg and Tim Burton from the data set. Then, I proceeded to plot the 95% confidence internal to see whether there is an overlap, which indicates that the hypothesis above should be further explored. Since this was the case, I decided to train sample data sets (1000 data points) using the infer package and then performed a hypothesis test to test whether there is any noticeable difference in rating. After performing a t-test to see whether there is a difference in the observations of the two data sets, the null hypothesis was rejected since the t-score was higher than 2.</p>
 </blockquote>
-<p><img src="/Users/jack/Desktop/London%20Business%20School/Classes/CA09/PlsWork/static/images/movies.jpeg" width="100%" /> ```</p>
+<p><img src="/Users/jack/Desktop/London%20Business%20School/Classes/CA09/PlsWork/static/images/movies.jpeg" width="100%" /></p>
 <pre class="r"><code>movies &lt;- read_csv(here::here(&quot;data&quot;, &quot;movies.csv&quot;))</code></pre>
 <pre><code>## Rows: 2961 Columns: 11</code></pre>
 <pre><code>## ── Column specification ────────────────────────────────────────────────────────
