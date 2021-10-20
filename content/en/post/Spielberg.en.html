@@ -9,6 +9,10 @@ output: md_document
 
 
 
+<blockquote>
+<p>I wanted to test whether movies from Steven Spielberg and Tim Burton have the same mean rating. Using data from IMDB, I first filtered Steven Spielberg and Tim Burton from the data set. Then, I proceeded to plot the 95% confidence internal to see whether there is an overlap, which indicates that the hypothesis above should be further explored. Since this was the case, I decided to train sample data sets (1000 data points) using the infer package and then performed a hypothesis test to test whether there is any noticeable difference in rating. After performing a t-test to see whether there is a difference in the observations of the two data sets, the null hypothesis was rejected since the t-score was higher than 2.</p>
+</blockquote>
+<p>{{&lt; figure src=&quot;/images/movies.jpeg&quot; title=&quot;&quot; &gt;}}</p>
 <pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
 <pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
 ## ✓ tibble  3.1.5     ✓ dplyr   1.0.7
@@ -134,7 +138,6 @@ output: md_document
 ## $ votes               &lt;dbl&gt; 886204, 793059, 418214, 995415, 1676169, 534658, 9…
 ## $ reviews             &lt;dbl&gt; 3777, 2843, 1934, 2425, 5312, 3917, 1752, 1752, 35…
 ## $ rating              &lt;dbl&gt; 7.9, 7.7, 7.0, 8.1, 9.0, 6.5, 8.7, 7.5, 8.5, 7.2, …</code></pre>
-<p>Your R code and analysis should go here. If you want to insert a blank chunk of R code you can just hit <code>Ctrl/Cmd+Alt+I</code></p>
 <pre class="r"><code># Select Tim Burton and Steven Spielberg and filter for director and rating
 rating_analysis &lt;- movies %&gt;% filter(director == &quot;Steven Spielberg&quot; | director == &quot;Tim Burton&quot;) %&gt;% select(director, rating) %&gt;% group_by(director)
 
@@ -228,4 +231,3 @@ boot_meanrating_Burton &lt;- rating_analysis %&gt;%
  t_stat &lt;- (mean(boot_meanrating_Burton$stat)-mean(boot_meanrating_Spielberg$stat))/SE
  print(t_stat)</code></pre>
 <pre><code>## [1] 2.044137</code></pre>
-<p>knitr::knit(&quot;Spielberg.en.Rmd&quot;)</p>
