@@ -5,4 +5,4 @@ title: Claudio's Data Analytics Portfolio
 ---
 
 Below, you may find an excerpt of the work I completed while attending the Data Analytics for Finance course at LBS
-{{< figure src="/images/image.jpeg" title="Data Analytics for Finance" >}}
+{{< figure src="/images/data.jpeg" title="Data Analytics for Finance" >}}
