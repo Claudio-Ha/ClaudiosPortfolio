@@ -1,9 +1,9 @@
 ---
-date: "2021-10-06T10:58:08-04:00"
+title: "Steven Spielberg and Tim Burton Movie Rating"
 description: Do Steven Spielberg's and Tim Burton's movies have the same mean rating?
-featured_image: ""
+date: '2021-10-06T10:58:08-04:00'
 tags: []
-title: 'Steven Spielberg and Tim Burton Movie Rating'
+featured_image: ''
 ---
 
 > I wanted to test whether movies from Steven Spielberg and Tim Burton have the same mean rating. Using data from IMDB, I first filtered Steven Spielberg and Tim Burton from the data set. Then, I proceeded to plot the 95% confidence internal to see whether there is an overlap, which indicates that the hypothesis above should be further explored. Since this was the case, I decided to train sample data sets (1000 data points) using the infer package and then performed a hypothesis test to test whether there is any noticeable difference in rating. After performing a t-test whether there is a difference in the observations of the two data sets, the null hypothesis was rejected since the t-score was higher than 2.
