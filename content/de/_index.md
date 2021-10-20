@@ -1,5 +1,5 @@
 ---
-Beschreibung: Willkommen auf meiner Website! Bitte sehen Sie sich einige der Dinge an, an denen ich während meines Studiums an der London Business School gearbeitet habe
+description: 'Willkommen auf meiner Website! Bitte sehen Sie sich einige der Dinge an, an denen ich während meines Studiums an der London Business School gearbeitet habe'
 featured_image: 
 Titel: Claudio's Data Analytics Portfolio
 ---
