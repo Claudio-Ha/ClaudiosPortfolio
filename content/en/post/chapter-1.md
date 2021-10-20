@@ -2,7 +2,7 @@
 date: "2021-10-06T10:58:08-04:00"
 description: Do Steven Spielberg's and Tim Burton's movies have the same mean rating?
 featured_image: ""
-tags[]
+tags: []
 title: 'Steven Spielberg and Tim Burton Movie Rating'
 ---
 
