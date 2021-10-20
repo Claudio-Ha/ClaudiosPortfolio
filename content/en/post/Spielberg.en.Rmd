@@ -4,6 +4,7 @@ description: Do Steven Spielberg's and Tim Burton's movies have the same mean ra
 date: '2021-10-06T10:58:08-04:00'
 tags: []
 featured_image: ''
+output: md_document
 ---
 
 ```{r load-libraries, echo=FALSE}
@@ -129,4 +130,6 @@ boot_meanrating_Burton <- rating_analysis %>%
  print(t_stat)
  
 ```
+
+knitr::knit("Spielberg.en.Rmd")
 
