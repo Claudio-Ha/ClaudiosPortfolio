@@ -1,0 +1,132 @@
+---
+title: "Testing different Equity + Bond Strategies"
+description: Using monthly data from the Wilshire 5000 (Equity) and the ICE BofA US Corporate Index value (Bond) Indices, this analysis tests different portfolio strategies from December 1972 to January 2021
+date: '2021-10-20T10:58:08-04:00'
+tags: []
+featured_image: ''
+output: md_document
+---
+
+> Hereby, we use data from the Wilshire 5000 Index and the ICE BofA US Corporate Index value to compare Expected Return / Volatility of two popular investment strategies: The 60/40 Portfolio and the minimum variance portfolio
+
+
+
+
+
+
+
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('https://images.unsplash.com/photo-1535320903710-d993d3d77d29?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')
+```
+
+```{r load-libraries, echo=FALSE, warning=FALSE, message=FALSE, results=FALSE}
+library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages
+library(mosaic)
+library(ggthemes)
+library(GGally)
+library(readxl)
+library(here)
+library(skimr)
+library(janitor)
+library(broom)
+library(tidyquant)
+library(infer)
+library(openintro)
+library(quantmod)
+```
+
+```{r load-financial-data}
+financialdata <- read_csv(here::here("data", "EquityBond.csv"))
+glimpse(financialdata)
+```
+
+
+```{r Calculate monthly returns}
+# Select monthly returns
+Dates <- as.Date(financialdata$Date)
+Wilshire <- financialdata %>% select(Wilshire5000)
+BofA <- financialdata %>% select(BofAUSCorporate)
+
+# Calculate monthly returns using quantmod package
+monthlyreturns <- cbind(monthlyReturn(xts(Wilshire, Dates)), monthlyReturn(xts(BofA, Dates)))
+
+#turn back into data frame
+monthlyreturns <- as.data.frame(monthlyreturns)
+
+# Include Dates
+monthlyreturns <-cbind(monthlyreturns, Dates)
+
+# Rename columns
+NewNames <- c("Equity", "Bond", "Dates")
+names(monthlyreturns) <- NewNames
+
+# No return in first months, hence remove row 1
+monthlyreturns <- monthlyreturns[-1,]
+
+glimpse(monthlyreturns)
+```
+
+
+```{r}
+# Calculate monthly summary statistics
+MonthlyAverage <- monthlyreturns %>% summarise(avg_Equity=mean(Equity), avg_Bond=mean(Bond))
+MonthlyStdDev <-monthlyreturns %>% summarise(std_Dev_Equity = sd(Equity), std_Dev_Bond=sd(Bond))
+
+# Annualize
+YearlyAverage <-(MonthlyAverage+1)^12-1
+YearlyStdDev <- MonthlyStdDev*sqrt(12)
+
+# Calculate Correlation and Covariance
+Correlation <- cor(monthlyreturns$Equity, monthlyreturns$Bond)
+Covariance <- YearlyStdDev$std_Dev_Equity*YearlyStdDev$std_Dev_Bond*Correlation
+```
+
+```{r 60/40 Portfolio}
+
+weightEquity60 <- 0.6
+weightBond40 <- 0.4
+
+sixtyfortyReturn <- weightEquity60*YearlyAverage$avg_Equity+weightBond40*YearlyAverage$avg_Bond
+sixtyfortyStdDev <- sqrt(weightEquity60^2*YearlyStdDev$std_Dev_Equity^2+weightBond40^2*YearlyStdDev$std_Dev_Bond^2+2*weightBond40*weightEquity60*Covariance)
+
+SixtyFortyPortfolio <- cbind(sixtyfortyReturn, sixtyfortyStdDev)
+```
+
+```{r Minimum Variance Portfolio}
+
+weightEquity <- (YearlyStdDev$std_Dev_Bond^2-Correlation*YearlyStdDev$std_Dev_Equity*YearlyStdDev$std_Dev_Bond)/(YearlyStdDev$std_Dev_Equity^2+YearlyStdDev$std_Dev_Bond^2-2*Correlation*YearlyStdDev$std_Dev_Equity*YearlyStdDev$std_Dev_Bond)
+
+weightBond <- 1 - weightEquity
+
+minVarReturn <- weightEquity*YearlyAverage$avg_Equity+weightBond*YearlyAverage$avg_Bond
+minVarStdDev <- sqrt(weightEquity^2*YearlyStdDev$std_Dev_Equity^2+weightBond^2*YearlyStdDev$std_Dev_Bond^2+2*weightBond*weightEquity*Covariance)
+
+MinVarPortfolio <- cbind(minVarReturn, minVarStdDev)
+```
+
+```{r Plot risk return}
+# Combine in one data frame
+Data <- rbind(MinVarPortfolio, SixtyFortyPortfolio)
+Strategy <- c("Minimum Variance", "SixtyForty")
+Data <- cbind(Strategy, Data)
+Data <- as.data.frame(Data)
+colNames <- c("Strategy", "Return", "StdDev")
+names(Data) <- colNames
+
+# turn std dev and return to numeric
+Data$Return <- as.numeric(Data$Return)
+Data$StdDev <- as.numeric(Data$StdDev)
+glimpse(Data)
+
+#plot
+Data %>% ggplot(aes(x=StdDev, y=Return, color=Strategy))+
+  geom_point(size=4)+
+  xlim(0, 0.12)+
+  ylim(0.05, 0.13)+
+  theme_bw()+
+  labs(Title="60/40 Portfolio and Minimum Variance Portfolio", x="Volatility", y="Expected Return")
+```
+
+
+
