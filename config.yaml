@@ -1,5 +1,5 @@
 title: My Data Analytics Portfolio
-baseURL: https://https://claudiosportfolio.netlify.app/
+baseURL: https://example.com
 languageCode: en-us
 theme: gohugo-theme-ananke
 resourceDir: ../resources
