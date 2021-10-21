@@ -7,8 +7,9 @@ featured_image: ''
 output: md_document
 ---
 
-> I wanted to test whether movies from Steven Spielberg and Tim Burton have the same mean rating. Using data from IMDB, I first filtered Steven Spielberg and Tim Burton from the data set. Then, I proceeded to plot the 95% confidence internal to see whether there is an overlap, which indicates that the hypothesis above should be further explored. Since this was the case, I decided to train sample data sets (1000 data points) using the infer package and then performed a hypothesis test to test whether there is any noticeable difference in rating. After performing a t-test to see whether there is a difference in the observations of the two data sets, the null hypothesis was rejected since the t-score was higher than 2.
+> Ich wollte testen, ob Filme von Steven Spielberg und Tim Burton die gleiche durchschnittliche Bewertung haben. Unter Verwendung der Daten von IMDB habe ich zunächst Steven Spielberg und Tim Burton aus dem Datensatz herausgefiltert. Dann habe ich die 95%ige Konfidenzintervallkurve erstellt, um zu sehen, ob es eine Überschneidung gibt, was darauf hindeutet, dass die obige Hypothese weiter untersucht werden sollte. Da dies der Fall war, beschloss ich, Beispieldatensätze (1000 Datenpunkte) mit dem infer-Paket zu trainieren und dann einen Hypothesentest durchzuführen, um zu prüfen, ob es einen merklichen Unterschied in der Bewertung gibt. Nachdem ich einen t-Test durchgeführt hatte, um zu sehen, ob es einen Unterschied in den Beobachtungen der beiden Datensätze gibt, wurde die Nullhypothese verworfen, da der t-Wert größer als 2 war.
 
+Übersetzt mit www.DeepL.com/Translator (kostenlose Version)
 
 ```{r echo=FALSE, out.width='100%'}
 knitr::include_graphics('https://images.unsplash.com/photo-1542204165-65bf26472b9b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1548&q=80')

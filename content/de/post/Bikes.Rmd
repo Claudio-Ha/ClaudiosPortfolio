@@ -7,8 +7,7 @@ featured_image: ''
 output: md_document
 ---
 
-> This analysis tests how far away the monthly and the weekly number of bike rentals are for a given month / week from the average annual number of bike rentals 
-
+> Diese Analyse prüft, wie weit die monatliche und wöchentliche Anzahl der Fahrradverleihungen für einen bestimmten Monat / eine bestimmte Woche von der durchschnittlichen jährlichen Anzahl der Fahrradverleihungen entfernt ist 
 
 
 ```{r load-libraries, echo=FALSE, warning=FALSE, message=FALSE, results=FALSE}

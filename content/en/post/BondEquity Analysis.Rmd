@@ -7,12 +7,7 @@ featured_image: ''
 output: md_document
 ---
 
-> Hereby, we use data from the Wilshire 5000 Index and the ICE BofA US Corporate Index value from December 1972 to January 2021 to compare Expected Return / Volatility of two popular investment strategies: The 60/40 Portfolio and the minimum variance portfolio
-
-
-
-
-
+> For this analysis, I used data from the Wilshire 5000 Index and the ICE BofA US Corporate Index value from December 1972 to January 2021 to compare Expected Return / Volatility of two popular investment strategies: The 60/40 Portfolio and the minimum variance portfolio. First the two stocks were plotted over time and then the two strategies where derived.
 
 
 
