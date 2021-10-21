@@ -38,7 +38,7 @@ financialdata_longer %&gt;% ggplot(aes(x=Date, y=Return, colour=Ticker))+
   facet_wrap(~Ticker, scales=&quot;free&quot;)+
   theme_bw()+
   labs(title=&quot;Monthly return of Wilshire 5000 and BofA US Corporate Index&quot;, x=&quot;Time&quot;)</code></pre>
-<p><img src="/de/post/BondEquity%20Analysis_files/figure-html/Plot%20monthly%20return%20over%20time-1.png" width="672" /></p>
+<p><img src="/en/post/BondEquity%20Analysis_files/figure-html/Plot%20monthly%20return%20over%20time-1.png" width="672" /></p>
 <pre class="r"><code># Select monthly returns
 Dates &lt;- as.Date(financialdata$Date)
 Wilshire &lt;- financialdata %&gt;% select(Wilshire5000)
@@ -112,4 +112,4 @@ Data %&gt;% ggplot(aes(x=StdDev, y=Return, color=Strategy))+
   ylim(0.05, 0.13)+
   theme_bw()+
   labs(Title=&quot;60/40 Portfolio and Minimum Variance Portfolio&quot;, x=&quot;Volatility&quot;, y=&quot;Expected Return&quot;)</code></pre>
-<p><img src="/de/post/BondEquity%20Analysis_files/figure-html/Plot%20risk%20return-1.png" width="672" /></p>
+<p><img src="/en/post/BondEquity%20Analysis_files/figure-html/Plot%20risk%20return-1.png" width="672" /></p>
