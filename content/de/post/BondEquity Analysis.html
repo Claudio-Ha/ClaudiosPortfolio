@@ -1,6 +1,6 @@
 ---
 title: "Testing different Equity + Bond Strategies"
-description: Using monthly data from the Wilshire 5000 (Equity) and the ICE BofA US Corporate Index value (Bond) Indices, this analysis tests different portfolio strategies from December 1972 to January 2021
+description: ""
 date: '2021-10-20T10:58:08-04:00'
 tags: []
 featured_image: ''
@@ -10,7 +10,7 @@ output: md_document
 
 
 <blockquote>
-<p>Hereby, we use data from the Wilshire 5000 Index and the ICE BofA US Corporate Index value to compare Expected Return / Volatility of two popular investment strategies: The 60/40 Portfolio and the minimum variance portfolio</p>
+<p>Hereby, we use data from the Wilshire 5000 Index and the ICE BofA US Corporate Index value from December 1972 to January 2021 to compare Expected Return / Volatility of two popular investment strategies: The 60/40 Portfolio and the minimum variance portfolio</p>
 </blockquote>
 <p><img src="https://images.unsplash.com/photo-1535320903710-d993d3d77d29?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" width="100%" /></p>
 <pre class="r"><code>financialdata &lt;- read_csv(here::here(&quot;data&quot;, &quot;EquityBond.csv&quot;))</code></pre>
@@ -28,33 +28,41 @@ output: md_document
 ## $ Date            &lt;date&gt; 1972-12-31, 1973-01-31, 1973-02-28, 1973-03-31, 1973-…
 ## $ Wilshire5000    &lt;dbl&gt; 1.39, 1.35, 1.29, 1.28, 1.22, 1.19, 1.18, 1.25, 1.21, …
 ## $ BofAUSCorporate &lt;dbl&gt; 100.00, 100.00, 100.00, 100.46, 100.46, 100.46, 100.51…</code></pre>
+<pre class="r"><code># Convert data into longer format
+financialdata_longer &lt;- financialdata %&gt;% 
+  pivot_longer(cols = c(&quot;Wilshire5000&quot;, &quot;BofAUSCorporate&quot;), names_to=&quot;Ticker&quot;, values_to=&quot;Return&quot;)
+
+# Plot monthly returns
+financialdata_longer %&gt;% ggplot(aes(x=Date, y=Return, colour=Ticker))+
+  geom_line()+
+  facet_wrap(~Ticker, scales=&quot;free&quot;)+
+  theme_bw()+
+  labs(title=&quot;Monthly return of Wilshire 5000 and BofA US Corporate Index&quot;, x=&quot;Time&quot;)</code></pre>
+<p><img src="/de/post/BondEquity%20Analysis_files/figure-html/Plot%20monthly%20return%20over%20time-1.png" width="672" /></p>
 <pre class="r"><code># Select monthly returns
 Dates &lt;- as.Date(financialdata$Date)
 Wilshire &lt;- financialdata %&gt;% select(Wilshire5000)
 BofA &lt;- financialdata %&gt;% select(BofAUSCorporate)
 
 # Calculate monthly returns using quantmod package
-monthlyreturns &lt;- cbind(monthlyReturn(xts(Wilshire, Dates)), monthlyReturn(xts(BofA, Dates)))
-
-#turn back into data frame
-monthlyreturns &lt;- as.data.frame(monthlyreturns)
+monthlyreturns &lt;- data.frame(monthlyReturn(xts(Wilshire, Dates)), monthlyReturn(xts(BofA, Dates)))
 
 # Include Dates
-monthlyreturns &lt;-cbind(monthlyreturns, Dates)
+monthlyreturns &lt;-data.frame(Dates, monthlyreturns)
 
 # Rename columns
-NewNames &lt;- c(&quot;Equity&quot;, &quot;Bond&quot;, &quot;Dates&quot;)
+NewNames &lt;- c(&quot;Dates&quot;,&quot;Equity&quot;, &quot;Bond&quot;)
 names(monthlyreturns) &lt;- NewNames
 
-# No return in first months, hence remove row 1
+# No return in first month, hence remove row 1
 monthlyreturns &lt;- monthlyreturns[-1,]
 
 glimpse(monthlyreturns)</code></pre>
 <pre><code>## Rows: 577
 ## Columns: 3
+## $ Dates  &lt;date&gt; 1973-01-31, 1973-02-28, 1973-03-31, 1973-04-30, 1973-05-31, 19…
 ## $ Equity &lt;dbl&gt; -0.028776978, -0.044444444, -0.007751938, -0.046875000, -0.0245…
-## $ Bond   &lt;dbl&gt; 0.0000000000, 0.0000000000, 0.0046000000, 0.0000000000, 0.00000…
-## $ Dates  &lt;date&gt; 1973-01-31, 1973-02-28, 1973-03-31, 1973-04-30, 1973-05-31, 19…</code></pre>
+## $ Bond   &lt;dbl&gt; 0.0000000000, 0.0000000000, 0.0046000000, 0.0000000000, 0.00000…</code></pre>
 <pre class="r"><code># Calculate monthly summary statistics
 MonthlyAverage &lt;- monthlyreturns %&gt;% summarise(avg_Equity=mean(Equity), avg_Bond=mean(Bond))
 MonthlyStdDev &lt;-monthlyreturns %&gt;% summarise(std_Dev_Equity = sd(Equity), std_Dev_Bond=sd(Bond))
@@ -84,8 +92,7 @@ MinVarPortfolio &lt;- cbind(minVarReturn, minVarStdDev)</code></pre>
 <pre class="r"><code># Combine in one data frame
 Data &lt;- rbind(MinVarPortfolio, SixtyFortyPortfolio)
 Strategy &lt;- c(&quot;Minimum Variance&quot;, &quot;SixtyForty&quot;)
-Data &lt;- cbind(Strategy, Data)
-Data &lt;- as.data.frame(Data)
+Data &lt;- data.frame(Strategy, Data)
 colNames &lt;- c(&quot;Strategy&quot;, &quot;Return&quot;, &quot;StdDev&quot;)
 names(Data) &lt;- colNames
 
@@ -105,4 +112,4 @@ Data %&gt;% ggplot(aes(x=StdDev, y=Return, color=Strategy))+
   ylim(0.05, 0.13)+
   theme_bw()+
   labs(Title=&quot;60/40 Portfolio and Minimum Variance Portfolio&quot;, x=&quot;Volatility&quot;, y=&quot;Expected Return&quot;)</code></pre>
-<p><img src="/en/post/BondEquity%20Analysis_files/figure-html/Plot%20risk%20return-1.png" width="672" /></p>
+<p><img src="/de/post/BondEquity%20Analysis_files/figure-html/Plot%20risk%20return-1.png" width="672" /></p>

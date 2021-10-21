@@ -1,6 +1,6 @@
 ---
 title: "Testing different Equity + Bond Strategies"
-description:""
+description: ""
 date: '2021-10-20T10:58:08-04:00'
 tags: []
 featured_image: ''
@@ -40,7 +40,18 @@ library(quantmod)
 financialdata <- read_csv(here::here("data", "EquityBond.csv"))
 glimpse(financialdata)
 ```
+```{r Plot monthly return over time}
+# Convert data into longer format
+financialdata_longer <- financialdata %>% 
+  pivot_longer(cols = c("Wilshire5000", "BofAUSCorporate"), names_to="Ticker", values_to="Return")
 
+# Plot monthly returns
+financialdata_longer %>% ggplot(aes(x=Date, y=Return, colour=Ticker))+
+  geom_line()+
+  facet_wrap(~Ticker, scales="free")+
+  theme_bw()+
+  labs(title="Monthly return of Wilshire 5000 and BofA US Corporate Index", x="Time")
+```
 
 ```{r Calculate monthly returns}
 # Select monthly returns
@@ -49,23 +60,21 @@ Wilshire <- financialdata %>% select(Wilshire5000)
 BofA <- financialdata %>% select(BofAUSCorporate)
 
 # Calculate monthly returns using quantmod package
-monthlyreturns <- cbind(monthlyReturn(xts(Wilshire, Dates)), monthlyReturn(xts(BofA, Dates)))
-
-#turn back into data frame
-monthlyreturns <- as.data.frame(monthlyreturns)
+monthlyreturns <- data.frame(monthlyReturn(xts(Wilshire, Dates)), monthlyReturn(xts(BofA, Dates)))
 
 # Include Dates
-monthlyreturns <-cbind(monthlyreturns, Dates)
+monthlyreturns <-data.frame(Dates, monthlyreturns)
 
 # Rename columns
-NewNames <- c("Equity", "Bond", "Dates")
+NewNames <- c("Dates","Equity", "Bond")
 names(monthlyreturns) <- NewNames
 
-# No return in first months, hence remove row 1
+# No return in first month, hence remove row 1
 monthlyreturns <- monthlyreturns[-1,]
 
 glimpse(monthlyreturns)
 ```
+
 
 
 ```{r}
@@ -109,8 +118,7 @@ MinVarPortfolio <- cbind(minVarReturn, minVarStdDev)
 # Combine in one data frame
 Data <- rbind(MinVarPortfolio, SixtyFortyPortfolio)
 Strategy <- c("Minimum Variance", "SixtyForty")
-Data <- cbind(Strategy, Data)
-Data <- as.data.frame(Data)
+Data <- data.frame(Strategy, Data)
 colNames <- c("Strategy", "Return", "StdDev")
 names(Data) <- colNames
 
@@ -127,6 +135,4 @@ Data %>% ggplot(aes(x=StdDev, y=Return, color=Strategy))+
   theme_bw()+
   labs(Title="60/40 Portfolio and Minimum Variance Portfolio", x="Volatility", y="Expected Return")
 ```
-
-
 
